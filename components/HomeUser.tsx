@@ -55,7 +55,6 @@ function HomeUser() {
             Deshboard
           </h1>
           <UserButton
-            afterSignOutUrl="/"
             appearance={{ elements: { userButtonAvatarBox: "w-18 h-18" } }}
           />
           </div>

@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider afterSignOutUrl="/" signInFallbackRedirectUrl="/">
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${robotoMono.variable} ${roboto.variable} h-full antialiased bg-black text-white`}

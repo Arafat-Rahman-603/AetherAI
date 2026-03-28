@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useUser, useAuth , UserButton } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -23,7 +23,7 @@ export default function Embed() {
   if (!isLoaded) return null;
 
 
-  const embedCode = `<script \n  src="http://localhost:3000/AetherAI.js"\n  data-business-id="${userId}"\n></script>`;
+  const embedCode = `<script \n  src="${process.env.NEXT_PUBLIC_BASE_URL}/AetherAI.js"\n  data-business-id="${userId}"\n></script>`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(embedCode);
@@ -61,7 +61,7 @@ export default function Embed() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -89,7 +89,7 @@ export default function Embed() {
 
         body {
           background: var(--bg);
-          font-family: 'Syne', sans-serif;
+          font-family: 'Roboto Mono', monospace;
           color: var(--text-primary);
           min-height: 100vh;
         }
@@ -504,7 +504,6 @@ export default function Embed() {
                   Dashboard
                 </button>
                 <UserButton
-                  afterSignOutUrl="/"
                   appearance={{ elements: { userButtonAvatarBox: "w-8 h-8" } }}
                 />
               </>
@@ -568,9 +567,11 @@ export default function Embed() {
                 <span className="t-tag">&lt;script</span><br />
                 <span className="t-ind">{"  "}</span>
                 <span className="t-attr">src</span>=<span className="t-val">
-                  {process.env.NEXT_PUBLIC_BASE_URL}/AetherAI.js</span><br />
+                  {`"${process.env.NEXT_PUBLIC_BASE_URL}/AetherAI.js"`}</span><br />
                 <span className="t-ind">{"  "}</span>
-                <span className="t-attr">data-business-id</span>=<span className="t-val">"{userId}"</span><br />
+                <span className="t-attr">data-business-id</span>=<span className="t-val">
+                  {`"${userId}"`}
+                </span><br />
                 <span className="t-tag">&gt;&lt;/script&gt;</span>
               </div>
             </div>
