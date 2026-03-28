@@ -42,7 +42,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">{children}
         <Script
-          src="https://aether-ai-support.vercel.app/AetherAI.js"
+          src="http://localhost:3000/AetherAI.js"
           data-business-id="user_3BWkRNn60s5gUB49tbr4h3o5lTv"
         />
         
