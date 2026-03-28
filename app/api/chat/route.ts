@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import Set from "@/models/set.model";
 import { GoogleGenAI } from "@google/genai";
+import { connectDB } from "@/lib/db";
 
 export async function POST(request: NextRequest) {
   try {
+    
+    await connectDB();
+    
     const { userId, message } = await request.json();
 
     if (!userId) {
