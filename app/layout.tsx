@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from '@clerk/nextjs'
 import { Geist, Geist_Mono, Roboto_Condensed , Roboto_Mono} from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -39,7 +40,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${robotoMono.variable} ${roboto.variable} h-full antialiased bg-black text-white`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">{children}
+        <Script
+          src="http://localhost:3000/AetherAI.js"
+          data-business-id="user_3BWkRNn60s5gUB49tbr4h3o5lTv"
+        />
+      </body>
     </html>
     </ClerkProvider>
   );

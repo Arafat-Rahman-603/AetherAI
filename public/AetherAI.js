@@ -25,7 +25,7 @@
     .aether-msg-user { align-self:flex-end; background: linear-gradient(135deg,#6366f1,#a855f7); color:white; border-bottom-right-radius:4px; }
     .aether-msg-bot { align-self:flex-start; background:#f1f5f9; color:#334155; border-bottom-left-radius:4px; }
     @keyframes fadeIn { from { opacity:0; transform: translateY(10px);} to { opacity:1; transform:translateY(0);} }
-    #aether-input-container { padding:10px; border-top:1px solid #e2e8f0; display:flex; gap:10px; background:white; border-bottom-left-radius:20px; border-bottom-right-radius:20px; }
+    #aether-input-container { padding:10px; border-top:1px solid #e2e8f0; display:flex; gap:10px;color:black; background:white; border-bottom-left-radius:20px; border-bottom-right-radius:20px; }
     #aether-input { flex:1; border:1px solid #e2e8f0; border-radius:12px; padding:10px; font-size:14px; outline:none; }
     #aether-input:focus { border-color:#6366f1; }
     #aether-send-btn { background:#6366f1;color:white;border:none;border-radius:12px;width:40px;height:40px;cursor:pointer; display:flex;align-items:center;justify-content:center; }
