@@ -34,7 +34,9 @@ function Dashboard() {
       setSave(true);
       setTimeout(() => {
         setSave(false);
-      }, 5000);
+        router.push("/embed");
+      }, 2000);
+
     } catch (error) {
       console.error(error);
     } finally {
