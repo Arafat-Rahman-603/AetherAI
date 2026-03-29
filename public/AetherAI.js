@@ -2,7 +2,7 @@
 (function () {
   const scriptTag = document.currentScript;
   const USER_ID = scriptTag.getAttribute("data-business-id");
-  const API_URL = "http://localhost:3000/api/chat"; // match backend origin
+  const API_URL = "https://aether-ai-support.vercel.app/api/chat"; // match backend origin
 
   if (!USER_ID) {
     console.error("Missing data-business-id");

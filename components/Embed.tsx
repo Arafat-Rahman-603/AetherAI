@@ -23,14 +23,22 @@ export default function Embed() {
   if (!isLoaded) return null;
 
 
-  const embedCode = `<script \n  src="${process.env.NEXT_PUBLIC_BASE_URL}/AetherAI.js"\n  data-business-id="${userId}"\n></script>`;
+  const embedCode = `<script
+  src="${process.env.NEXT_PUBLIC_BASE_URL}/AetherAI.js"
+  data-business-id="${userId}"
+></script>`;
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(embedCode);
+const handleCopy = async () => {
+  try {
+    if (!userId) throw new Error("User ID not loaded yet");
+    await navigator.clipboard.writeText(embedCode);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
-  };
-
+  } catch (err) {
+    console.error("Copy failed:", err);
+    alert("Failed to copy. Please try again.");
+  }
+};
   const steps = [
     {
       step: "01",
@@ -313,6 +321,8 @@ export default function Embed() {
           display: flex;
           align-items: center;
           gap: 6px;
+          z-index: 1000;
+          cursor: pointer;
           font-family: 'Syne', sans-serif;
           font-size: 0.72rem;
           font-weight: 700;
@@ -498,7 +508,7 @@ export default function Embed() {
             <span className="logo-dot" />
           </div>
           <div className="nav-actions">
-            {isSignedIn ? (
+            {userId ? (
               <>
                 <button className="nav-btn" onClick={() => router.push("/deshboard")}>
                   Dashboard
