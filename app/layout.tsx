@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { ClerkProvider } from '@clerk/nextjs'
-import { Geist, Geist_Mono, Roboto_Condensed , Roboto_Mono} from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import {
+  Geist,
+  Geist_Mono,
+  Roboto_Condensed,
+  Roboto_Mono,
+} from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import "./globals.css";
 
@@ -35,19 +41,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider afterSignOutUrl="/" signInFallbackRedirectUrl="/">
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${robotoMono.variable} ${roboto.variable} h-full antialiased bg-black text-white`}
     >
-      <body className="min-h-full flex flex-col">{children}
-        <Script
-          src="https://aether-ai-support.vercel.app/AetherAI.js"
-          data-business-id="user_3BWkRNn60s5gUB49tbr4h3o5lTv"
-        />
-        
+      <body className="min-h-full flex flex-col">
+        <ClerkProvider afterSignOutUrl="/" signInFallbackRedirectUrl="/">
+          {children}
+          <Script
+            src="https://aether-ai-support.vercel.app/AetherAI.js"
+            data-business-id="user_3BWkRNn60s5gUB49tbr4h3o5lTv"
+          />
+          <Analytics />
+        </ClerkProvider>
       </body>
     </html>
-    </ClerkProvider>
   );
 }
