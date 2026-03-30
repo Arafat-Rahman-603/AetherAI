@@ -6,7 +6,7 @@ import {
   Roboto_Condensed,
   Roboto_Mono,
 } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import "./globals.css";
 
