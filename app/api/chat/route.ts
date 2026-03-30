@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
           }
         }
 
-        const productsData = productList.slice(0, 12).map((item: { name?: string; title?: string; price?: string | number; amount?: string | number }) => ({
+        const productsData = productList.slice(0, 30).map((item: { name?: string; title?: string; price?: string | number; amount?: string | number }) => ({
           name: item?.name || item?.title || "No Name",
           price: item?.price || item?.amount || 0,
         }));
