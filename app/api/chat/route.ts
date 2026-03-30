@@ -149,14 +149,23 @@ RESPONSE:
     }
 
     if (!res) throw new Error("All API keys failed");
-
-    return NextResponse.json({ reply: res.text });
+    const response = NextResponse.json({ reply: res.text });
+    response.headers.set("Content-Type", "application/json");
+    response.headers.set("Access-Control-Allow-Origin", "*");
+    response.headers.set("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+    response.headers.set("Access-Control-Allow-Headers", "Content-Type");
+    return response;
   } catch (error) {
     console.error("Error:", error);
-    return NextResponse.json(
+    const response = NextResponse.json(
       { message: "Internal server error" },
       { status: 500 },
     );
+    response.headers.set("Content-Type", "application/json");
+    response.headers.set("Access-Control-Allow-Origin", "*");
+    response.headers.set("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+    response.headers.set("Access-Control-Allow-Headers", "Content-Type");
+    return response;
   }
 }
 
