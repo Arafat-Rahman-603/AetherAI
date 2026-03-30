@@ -9,11 +9,14 @@ import Navbar from "./Navbar";
 
 function Dashboard() {
   const userId = useUser().user?.id;
+
   const router = useRouter();
   const { isSignedIn } = useUser();
   const [businessName, setBusinessName] = useState("");
   const [businessEmail, setBusinessEmail] = useState("");
+  const [clickBackendUrl, setClickBackendUrl] = useState(false);
   const [knowledgeBase, setKnowledgeBase] = useState("");
+  const [backendUrl, setBackendUrl] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [save, setSave] = useState(false);
@@ -29,8 +32,9 @@ function Dashboard() {
         business: businessName,
         email: businessEmail,
         data: knowledgeBase,
+        backendUrl: clickBackendUrl ? backendUrl : "",
       });
-      
+      console.log(res);
       setSave(true);
       setTimeout(() => {
         setSave(false);
@@ -59,6 +63,10 @@ function Dashboard() {
           setBusinessName(res.data.set.business || "");
           setBusinessEmail(res.data.set.email || "");
           setKnowledgeBase(res.data.set.data || "");
+          setBackendUrl(res.data.set.backendUrl || "");
+          if (res.data.set.backendUrl) {
+            setClickBackendUrl(true);
+          }
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -131,6 +139,26 @@ function Dashboard() {
               placeholder="Business Email"
               className="border border-gray-600 px-3 py-2 rounded-md focus:outline-none focus:border-gray-400 transition bg-[#1b1b24] text-gray-200"
             />
+            <h3 className="text-gray-200 pt-2 leading-tight text-md font-semibold flex items-center gap-2">
+              You have any backend url for your products?
+              <input type="checkbox" checked={clickBackendUrl} onChange={(e) => {
+                setClickBackendUrl(e.target.checked);
+                if (!e.target.checked) setBackendUrl("");
+              }} className="cursor-pointer" />
+            </h3>
+            {clickBackendUrl && (
+              <>
+                <input
+                  type="text"
+                  value={backendUrl}
+                  onChange={(e) => setBackendUrl(e.target.value)}
+                  required
+                  placeholder="https://example.com/api/products"
+                  className="border border-gray-600 px-3 py-2 rounded-md focus:outline-none focus:border-gray-400 transition bg-[#1b1b24] text-gray-200"
+                />
+                <p className="text-xs text-red-500">AetherAI only uses the first 15 product details for faster and efficient responses.</p>
+              </>
+            )}
             <h3 className="text-gray-200 text-xl font-semibold leading-tight">
               Business knowledge base
             </h3>
