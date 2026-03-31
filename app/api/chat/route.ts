@@ -149,7 +149,6 @@ RESPONSE:
 
     if (!res) throw new Error("All API keys failed");
     const response = NextResponse.json({ reply: res.text });
-    response.headers.set("Content-Type", "application/json");
     response.headers.set("Access-Control-Allow-Origin", "*");
     response.headers.set("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
     response.headers.set("Access-Control-Allow-Headers", "Content-Type");
@@ -160,7 +159,6 @@ RESPONSE:
       { message: "Internal server error" },
       { status: 500 },
     );
-    response.headers.set("Content-Type", "application/json");
     response.headers.set("Access-Control-Allow-Origin", "*");
     response.headers.set("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
     response.headers.set("Access-Control-Allow-Headers", "Content-Type");
