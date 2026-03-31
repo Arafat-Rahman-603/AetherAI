@@ -96,7 +96,6 @@ ${message}
 RESPONSE:
 `;
 
-    // 🔥 API KEYS ROTATION
     const keys = [
       process.env.GEMINI_API_KEY_MD_5,
       process.env.GEMINI_API_KEY_MD_6,
